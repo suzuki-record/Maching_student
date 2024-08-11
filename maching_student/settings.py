@@ -50,7 +50,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "benesse.urls"
+ROOT_URLCONF = "maching_student.urls"
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "benesse.wsgi.application"
+WSGI_APPLICATION = "maching_student.wsgi.application"
 
 
 # Database
@@ -128,3 +128,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+LOGIN_URL = 'login'  # ログインページのURL

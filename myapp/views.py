@@ -44,10 +44,13 @@ from django.shortcuts import render
 
 
 # myapp/views.py
+# myapp/views.py
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import QualificationForm
 
+@login_required
 def home(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
     
@@ -62,9 +65,33 @@ def home(request):
     context = {
         'form': form,
         'qualification': profile.qualification,
-        'users': UserProfile.objects.all()  # 仮に全ユーザーのプロファイルを取得
+        'users': UserProfile.objects.all()
     }
     return render(request, 'home.html', context)
+
+
+
+# from django.shortcuts import render, redirect
+# from .models import UserProfile
+# from .forms import QualificationForm
+
+# def home(request):
+#     profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+#     if request.method == 'POST':
+#         form = QualificationForm(request.POST, instance=profile)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+#     else:
+#         form = QualificationForm(instance=profile)
+
+#     context = {
+#         'form': form,
+#         'qualification': profile.qualification,
+#         'users': UserProfile.objects.all()  # 仮に全ユーザーのプロファイルを取得
+#     }
+#     return render(request, 'home.html', context)
 
 
 
